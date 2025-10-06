@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City Data</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
+    <link rel="stylesheet" href="styles/base.css">
+</head>
+<body>
+
+    <!-- 1. HOME -->
+    <section id="home" class="section-journey active">
+        <div class="landing-left-block">
+            <h1>Smart City Data</h1>
+            <p>Explore how data and technology are transforming cities into smarter and more resilient environments. An interactive journey through urban challenges and data-driven solutions.</p>
+            
+            <!-- Dado Impactante da NASA -->
+            <div class="nasa-data-alert">
+                <h3>🚨 According to NASA Data:</h3>
+                <div class="data-highlight">
+                    <span class="percentage-red">27%</span>
+                    <span class="data-text">of urban areas experience dangerous air quality levels</span>
+                </div>
+                <div class="data-details">
+                    <p><strong>That's over 2.5 billion people</strong> exposed to hazardous pollution levels in cities worldwide, leading to 7 million premature deaths annually from air pollution-related diseases.</p>
+                </div>
+                <div class="nasa-source">
+                    <small>Source: NASA Earth Observatory & WHO Global Air Quality Data</small>
+                </div>
+            </div>
+            
+            <button class="primary-button" onclick="showSection('california-case')">Start Data Journey</button>
+        </div>
+        <div class="globe-container-center">
+            <div id="globe-container"></div>
+        </div>
+    </section>
+
+    <!-- 2. CALIFORNIA CASE -->
+    <section id="california-case" class="section-journey">
+        <div class="content-block">
+            <h2>California Case: Urban Pollution Crisis</h2>
+            
+            <!-- Conteúdo completo de volta -->
+            <p>The map on the side uses NASA satellite data to diagnose a pollution crisis. In metropolises like Los Angeles and San Diego, heavy traffic generates large amounts of Nitrogen Dioxide (NO2).</p>
+            
+            <p>This pollutant doesn't disperse easily due to geographical factors like thermal inversion. This climate phenomenon acts as a "lid" over the city, trapping NO2 and other gases.</p>
+            
+            <p><strong>This is the high-risk scenario: If you were the leader, what would be your strategy to solve this public health and urban crisis?</strong></p>
+            
+            <div class="discovery-message">
+                <p>🎯 <strong>Interactive Discovery:</strong> Click the buttons on the map to explore additional data!</p>
+            </div>
+            
+            <button class="primary-button right-button" onclick="showSection('quiz')">Advance to Quiz</button>
+        </div>
+        <div class="image-placeholder">
+            <!-- Botões Interativos - EM CIMA DO MAPA -->
+            <div class="interactive-buttons">
+                <button class="info-button" onclick="toggleInfo('pollutant-info', this)">
+                    🌡️ Main Pollutant
+                </button>
+                <button class="info-button" onclick="toggleInfo('source-info', this)">
+                    🚗 Traffic Source
+                </button>
+                <button class="info-button" onclick="toggleInfo('factor-info', this)">
+                    🏔️ Thermal Inversion
+                </button>
+            </div>
+            
+            <img src="img/california-map.png" alt="California Pollution Map - NASA" class="case-image">
+            
+            <!-- Informações ADICIONAIS que aparecem/desaparecem -->
+            <div class="info-content" id="pollutant-info" style="display: none;">
+                <h4>🌡️ Main Pollutant</h4>
+                <p><strong>Nitrogen Dioxide (NO2) - Toxic gas</strong><br>This dangerous pollutant doesn't disperse easily due to geographical factors.</p>
+            </div>
+            
+            <div class="info-content" id="source-info" style="display: none;">
+                <h4>🚗 Primary Source</h4>
+                <p><strong>Heavy vehicle traffic in metropolises</strong><br>Millions of cars and trucks daily contribute to the NO2 emissions in urban areas.</p>
+            </div>
+            
+            <div class="info-content" id="factor-info" style="display: none;">
+                <h4>🏔️ Aggravating Factor</h4>
+                <p><strong>Thermal inversion acts as atmospheric "lid"</strong><br>This climate phenomenon traps NO2 and other gases, preventing dispersion.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. QUIZ -->
+    <section id="quiz" class="section-journey">
+        <div class="content-block quiz-block">
+            <h2>Quiz: Urban Challenge</h2>
+            <p><strong>Which of the actions below helps reduce urban heat and improve air quality in cities?</strong></p>
+            <div class="quiz-options">
+                <button class="secondary-button" onclick="handleQuiz('correct')">
+                    <span class="quiz-emoji">🌳</span>
+                    <strong>A) Urban Green Corridors</strong><br>
+                    <small>Plant trees connecting streets, parks and avenues to filter air and reduce heat.</small>
+                </button>
+                <button class="secondary-button" onclick="handleQuiz('wrongA')">
+                    <span class="quiz-emoji">🚗</span>
+                    <strong>B) Construction of more highways and urban tunnels</strong><br>
+                    <small>Expand road infrastructure to relieve traffic.</small>
+                </button>
+                <button class="secondary-button" onclick="handleQuiz('wrongB')">
+                    <span class="quiz-emoji">🏙️</span>
+                    <strong>C) Replace green areas with new buildings</strong><br>
+                    <small>Use space from squares and parks for more constructions and housing.</small>
+                </button>
+            </div>
+        </div>
+        <div class="image-placeholder">
+            <!-- Imagem da California com zoom -->
+            <div class="zoom-image-container">
+                <img src="img/california-map.png" alt="California Pollution Map - Zoom" class="california-zoom-image">
+                <div class="zoom-overlay">
+                    <h3>California Pollution Hotspots</h3>
+                    <p>Zoom analysis shows critical pollution areas in red zones</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SOLUTIONS -->
+    <section id="solutions" class="section-journey">
+        <div class="content-block">
+            <h2>Solutions for Resilient Cities</h2>
+            <p>Discover proven strategies that are transforming urban areas into healthier, sustainable and smarter environments.</p>
+            
+            <!-- Navbar de Soluções -->
+            <div class="solutions-navbar">
+                <button class="solution-nav-btn active" data-solution="green-corridors">
+                    <span class="nav-icon">🌳</span>
+                    Green Corridors
+                </button>
+                <button class="solution-nav-btn" data-solution="sustainable-mobility">
+                    <span class="nav-icon">🚌</span>
+                    Sustainable Mobility
+                </button>
+                <button class="solution-nav-btn" data-solution="green-infrastructure">
+                    <span class="nav-icon">🏙️</span>
+                    Green Infrastructure
+                </button>
+            </div>
+            
+            <button class="primary-button right-button" onclick="showSection('california-forecast')">View Impact Forecast</button>
+        </div>
+        
+        <!-- Conteúdo Fullscreen das Soluções -->
+        <div class="solution-fullscreen" id="green-corridors-solution">
+            <div class="solution-content">
+                <button class="close-solution" onclick="closeSolution()">×</button>
+                <div class="solution-header">
+                    <div class="solution-icon-large">🌳</div>
+                    <h2>Urban Green Corridors</h2>
+                </div>
+                
+                <div class="solution-grid-fullscreen">
+                    <div class="solution-benefit">
+                        <h3>📊 How It Works</h3>
+                        <p>Creation of continuous green axes connecting urban areas, parks and avenues with dense vegetation and natural shading systems.</p>
+                        <ul>
+                            <li>Tree canopy coverage increases from 15% to 40%</li>
+                            <li>Temperature reduction: 2-5°C in urban areas</li>
+                            <li>NO₂ filtration: Up to 60% improvement</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-benefit">
+                        <h3>💚 Environmental Impact</h3>
+                        <p>Natural air purification through photosynthesis and evapotranspiration processes.</p>
+                        <div class="impact-metrics">
+                            <div class="metric">
+                                <span class="metric-value">-45%</span>
+                                <span class="metric-label">Air Pollution</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">-3°C</span>
+                                <span class="metric-label">Urban Temperature</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">+80%</span>
+                                <span class="metric-label">Biodiversity</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-benefit">
+                        <h3>🏗️ Implementation</h3>
+                        <p>Strategic planting along transportation corridors and urban centers.</p>
+                        <div class="implementation-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <span class="step-text">Identify key urban heat islands</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <span class="step-text">Plant native tree species</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <span class="step-text">Connect green spaces</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <span class="step-text">Maintain and monitor growth</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="solution-fullscreen" id="sustainable-mobility-solution">
+            <div class="solution-content">
+                <button class="close-solution" onclick="closeSolution()">×</button>
+                <div class="solution-header">
+                    <div class="solution-icon-large">🚌</div>
+                    <h2>Sustainable and Electric Mobility</h2>
+                </div>
+                
+                <div class="solution-grid-fullscreen">
+                    <div class="solution-benefit">
+                        <h3>📊 How It Works</h3>
+                        <p>Gradual replacement of combustion fleets with electric buses, expansion of bike lanes, and implementation of low-emission zones.</p>
+                        <ul>
+                            <li>Electric bus fleet: 100% conversion in 5 years</li>
+                            <li>Bike lane network: +300% expansion</li>
+                            <li>Low-emission zones: City center restrictions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-benefit">
+                        <h3>💚 Environmental Impact</h3>
+                        <p>Drastic reduction in NO₂ emissions and urban noise pollution.</p>
+                        <div class="impact-metrics">
+                            <div class="metric">
+                                <span class="metric-value">-60%</span>
+                                <span class="metric-label">NO₂ Emissions</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">-70%</span>
+                                <span class="metric-label">Noise Pollution</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">+45%</span>
+                                <span class="metric-label">Public Transport Use</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-benefit">
+                        <h3>🏗️ Implementation</h3>
+                        <p>Phased approach with infrastructure development.</p>
+                        <div class="implementation-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <span class="step-text">Electric bus procurement</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <span class="step-text">Charging infrastructure</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <span class="step-text">Bike lane expansion</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <span class="step-text">Zone implementation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="solution-fullscreen" id="green-infrastructure-solution">
+            <div class="solution-content">
+                <button class="close-solution" onclick="closeSolution()">×</button>
+                <div class="solution-header">
+                    <div class="solution-icon-large">🏙️</div>
+                    <h2>Green Roofs and Walls</h2>
+                </div>
+                
+                <div class="solution-grid-fullscreen">
+                    <div class="solution-benefit">
+                        <h3>📊 How It Works</h3>
+                        <p>Incentives for vertical gardens, green roofs, and recovery of urban rivers and canals to create natural cooling systems.</p>
+                        <ul>
+                            <li>Green roof coverage: 25% of buildings</li>
+                            <li>Vertical gardens: 50km of urban walls</li>
+                            <li>River restoration: 15km of urban waterways</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-benefit">
+                        <h3>💚 Environmental Impact</h3>
+                        <p>Improved CO₂ absorption and creation of urban microclimates.</p>
+                        <div class="impact-metrics">
+                            <div class="metric">
+                                <span class="metric-value">-35%</span>
+                                <span class="metric-label">Surface Temperature</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">+50%</span>
+                                <span class="metric-label">CO₂ Absorption</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">-40%</span>
+                                <span class="metric-label">Stormwater Runoff</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-benefit">
+                        <h3>🏗️ Implementation</h3>
+                        <p>Building codes and incentive programs.</p>
+                        <div class="implementation-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <span class="step-text">Building code updates</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <span class="step-text">Tax incentives</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <span class="step-text">Technical support</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <span class="step-text">Community programs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="image-placeholder">
+            <h3>Interactive Solutions Explorer</h3>
+            <p>Click on each solution to explore detailed implementation and impact data</p>
+            <div class="solutions-preview">
+                <div class="preview-item" data-solution="green-corridors">
+                    <div class="preview-icon">🌳</div>
+                    <h4>Green Corridors</h4>
+                    <p>Natural air purification and temperature reduction</p>
+                </div>
+                <div class="preview-item" data-solution="sustainable-mobility">
+                    <div class="preview-icon">🚌</div>
+                    <h4>Sustainable Mobility</h4>
+                    <p>Electric transport and clean urban movement</p>
+                </div>
+                <div class="preview-item" data-solution="green-infrastructure">
+                    <div class="preview-icon">🏙️</div>
+                    <h4>Green Infrastructure</h4>
+                    <p>Building-integrated nature solutions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- 5. CALIFORNIA FORECAST -->
+    <section id="california-forecast" class="section-journey">
+        <!-- PART 1: COMPARISON IN TABLE FORMAT -->
+        <div class="content-block forecast-comparison">
+            <h2>Forecast: California 2030</h2>
+            <p class="forecast-subtitle">Comparison between current situation and scenario with the 3 solutions applied</p>
+            
+            <div class="comparison-table">
+                <div class="table-header">
+                    <div class="table-cell indicator-header">Indicator</div>
+                    <div class="table-cell before-header">Before (current situation)</div>
+                    <div class="table-cell after-header">After (with 3 solutions applied)</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell indicator-cell">
+                        <div class="indicator-icon">🌡️</div>
+                        <div class="indicator-text">Temperature in urban areas</div>
+                    </div>
+                    <div class="table-cell before-cell">
+                        <p>Up to 3 °C hotter than nearby rural areas</p>
+                    </div>
+                    <div class="table-cell after-cell positive">
+                        <p>Reduction of 0.5 °C to 2 °C on average in green and shaded regions</p>
+                    </div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell indicator-cell">
+                        <div class="indicator-icon">🏢</div>
+                        <div class="indicator-text">Temperature on roofs/asphalt</div>
+                    </div>
+                    <div class="table-cell before-cell">
+                        <p>Surfaces reach 50–60 °C on hot days</p>
+                    </div>
+                    <div class="table-cell after-cell positive">
+                        <p>With green roofs, drops to 25–35 °C</p>
+                    </div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell indicator-cell">
+                        <div class="indicator-icon">🌫️</div>
+                        <div class="indicator-text">Average NO₂ concentration (air pollution)</div>
+                    </div>
+                    <div class="table-cell before-cell">
+                        <p>22 ppb (parts per billion) — annual average in Los Angeles (2020)</p>
+                    </div>
+                    <div class="table-cell after-cell positive">
+                        <p>Drops to 9–12 ppb, a reduction of 45% to 60%</p>
+                    </div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell indicator-cell">
+                        <div class="indicator-icon">🚍</div>
+                        <div class="indicator-text">NO₂ peaks near highways</div>
+                    </div>
+                    <div class="table-cell before-cell">
+                        <p>Up to 80 ppb (during peak hours)</p>
+                    </div>
+                    <div class="table-cell after-cell positive">
+                        <p>Reduces to 25–45 ppb with electric buses and low-emission zones</p>
+                    </div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell indicator-cell">
+                        <div class="indicator-icon">💨</div>
+                        <div class="indicator-text">Days with bad air (AQI above ideal)</div>
+                    </div>
+                    <div class="table-cell before-cell">
+                        <p>About 100 days/year with poor air quality</p>
+                    </div>
+                    <div class="table-cell after-cell positive">
+                        <p>Drops to 40–70 days/year, depending on scale of measures</p>
+                    </div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell indicator-cell">
+                        <div class="indicator-icon">❤️</div>
+                        <div class="indicator-text">Respiratory health impacts</div>
+                    </div>
+                    <div class="table-cell before-cell">
+                        <p>High incidence of asthma and respiratory irritations</p>
+                    </div>
+                    <div class="table-cell after-cell positive">
+                        <p>Fewer hospitalizations and better quality of life — up to 60% less harmful exposure to NO₂</p>
+                    </div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell indicator-cell">
+                        <div class="indicator-icon">💰</div>
+                        <div class="indicator-text">Public health costs</div>
+                    </div>
+                    <div class="table-cell before-cell">
+                        <p>Millions of dollars annually in spending for respiratory diseases</p>
+                    </div>
+                    <div class="table-cell after-cell positive">
+                        <p>Potential savings of US$ 2–4 billion/year (according to EPA estimates)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PART 2: ONLY THE CHART (CARDS REMOVED) -->
+        <div class="content-block forecast-solutions">
+            <h2>Visual Impact on Air Quality</h2>
+            <p class="forecast-subtitle">See how solutions drastically transform the air quality we breathe</p>
+            
+            <!-- BAD AIR DAYS CHART -->
+            <div class="air-quality-chart-container">
+                <h3>📊 Reduction of Bad Air Days</h3>
+                <p>View the improvement in air quality in percentage:</p>
+                <div class="chart-wrapper">
+                    <canvas id="airQualityChart"></canvas> 
+                </div>
+                <div class="chart-explanation">
+                    <p><strong>Before:</strong> 100 days/year with bad air (27% of the year)</p>
+                    <p><strong>After:</strong> 40-70 days/year with bad air (11-19% of the year)</p>
+                    <p><strong>Reduction:</strong> 30-60% fewer days with health-harmful air</p>
+                </div>
+            </div>
+            
+            <button class="primary-button right-button" onclick="showSection('medellin-case')">View Success Case</button>
+        </div>
+    </section>
+
+        <!-- 6. MEDELLIN CASE -->
+    <section id="medellin-case" class="section-journey">
+        <div class="content-block">
+            <h2>Success Case: Medellín</h2>
+            <p><strong>Medellín, a city in a valley with pollution and heat problems, invested in creating Green Corridors — dense vegetation routes that act as NO2 filters and encourage active transportation.</strong></p>
+            
+            <div class="medellin-table-container">
+                <h3>📊 Medellín — Before and After</h3>
+                <p class="table-subtitle">Urban transformation through Green Corridors</p>
+                
+                <div class="comparison-table">
+                    <div class="table-header">
+                        <div class="table-cell indicator-header">Indicator</div>
+                        <div class="table-cell before-header">Before</div>
+                        <div class="table-cell after-header">After</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="table-cell indicator-cell">
+                            <div class="indicator-icon">🌡️</div>
+                            <div class="indicator-text">Average urban temperature</div>
+                        </div>
+                        <div class="table-cell before-cell">
+                            <p>32 °C</p>
+                        </div>
+                        <div class="table-cell after-cell positive">
+                            <p>↓ up to 2–3 °C</p>
+                        </div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="table-cell indicator-cell">
+                            <div class="indicator-icon">🌿</div>
+                            <div class="indicator-text">Urban vegetation</div>
+                        </div>
+                        <div class="table-cell before-cell">
+                            <p>Almost non-existent</p>
+                        </div>
+                        <div class="table-cell after-cell positive">
+                            <p>+12,500 trees and 120 thousand plants</p>
+                        </div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="table-cell indicator-cell">
+                            <div class="indicator-icon">🌬️</div>
+                            <div class="indicator-text">Air pollution (NO₂ and PM2.5)</div>
+                        </div>
+                        <div class="table-cell before-cell">
+                            <p>High — caused ~2 thousand deaths/year</p>
+                        </div>
+                        <div class="table-cell after-cell positive">
+                            <p>Significant reduction; cleaner and fresher air</p>
+                        </div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="table-cell indicator-cell">
+                            <div class="indicator-icon">🏙️</div>
+                            <div class="indicator-text">Biodiversity</div>
+                        </div>
+                        <div class="table-cell before-cell">
+                            <p>Scarce</p>
+                        </div>
+                        <div class="table-cell after-cell positive">
+                            <p>Return of birds, frogs and bats</p>
+                        </div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="table-cell indicator-cell">
+                            <div class="indicator-icon">💰</div>
+                            <div class="indicator-text">Investment</div>
+                        </div>
+                        <div class="table-cell before-cell">
+                            <p>No investment</p>
+                        </div>
+                        <div class="table-cell after-cell positive">
+                            <p>US$ 16.3 million + annual maintenance of US$ 625 thousand</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="success-call-to-action">
+                <h3>You can also be part of this change!</h3>
+                <p>Every city has the power to transform its future. See how to apply sustainable solutions where you live.</p>
+            </div>
+            
+            <button class="primary-button right-button" onclick="showSection('applications')">Apply In My City</button>
+        </div>
+        <div class="image-placeholder">
+            <h3>Proven Transformation</h3>
+            <p>Medellín - from problematic city to global model of urban innovation</p>
+            
+            <!-- SIMPLE CHART FOR MEDELLÍN -->
+            <div class="medellin-chart-container">
+                <div class="chart-row">
+                    <div class="chart-item">
+                        <div class="chart-label">Respiratory Diseases</div>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar-before" style="width: 100%">
+                                <span class="chart-value">-40%</span>
+                            </div>
+                        </div>
+                        <div class="chart-explanation">Reduction in acute respiratory infections</div>
+                    </div>
+                </div>
+                
+                <div class="chart-row">
+                    <div class="chart-item">
+                        <div class="chart-label">Urban Temperature</div>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar-before" style="width: 100%">
+                                <span class="chart-value">-10°C</span>
+                            </div>
+                        </div>
+                        <div class="chart-explanation">Surface temperature reduction</div>
+                    </div>
+                </div>
+                
+                <div class="chart-row">
+                    <div class="chart-item">
+                        <div class="chart-label">New Cyclists</div>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar-after" style="width: 100%">
+                                <span class="chart-value">+34.6%</span>
+                            </div>
+                        </div>
+                        <div class="chart-explanation">Increase in bicycle users</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- THEN-NOW IMAGE -->
+            <div class="then-now-image-container">
+                <img src="img/THEN-NOW.png" alt="Medellín Transformation - Before and After" class="then-now-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. TAKE ACTION -->
+    <section id="applications" class="section-journey">
+        <div class="content-block">
+            <h2>Take Action Now</h2>
+            <p>Your ideas matter! Submit your suggestions for urban improvements. Using NASA data and AI analysis, we'll ensure your proposals reach city decision-makers with maximum impact.</p>
+            
+            <!-- Formulário de Sugestões -->
+            <div class="action-form-container">
+                <form class="suggestion-form" id="suggestionForm">
+                    <div class="form-group">
+                        <label for="user-name">Your Name</label>
+                        <input type="text" id="user-name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-email">Email</label>
+                        <input type="email" id="user-email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-city">Your City</label>
+                        <input type="text" id="user-city" name="city" placeholder="Which city are you from?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="suggestion-type">Improvement Area</label>
+                        <select id="suggestion-type" name="suggestionType" required>
+                            <option value="">Select an area...</option>
+                            <option value="green-corridors">🌳 Green Corridors & Parks</option>
+                            <option value="mobility">🚌 Sustainable Mobility</option>
+                            <option value="green-buildings">🏙️ Green Buildings</option>
+                            <option value="air-quality">💨 Air Quality Improvement</option>
+                            <option value="waste-management">🗑️ Waste Management</option>
+                            <option value="other">🔧 Other Urban Improvement</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="suggestion-details">Your Suggestion</label>
+                        <textarea id="suggestion-details" name="suggestionDetails" placeholder="Describe your idea for urban improvement in detail..." rows="5" required></textarea>
+                        <div class="char-counter">
+                            <span id="charCount">0</span>/500 characters
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="suggestion-location">Specific Location (Optional)</label>
+                        <input type="text" id="suggestion-location" name="location" placeholder="Street, neighborhood, or specific area">
+                    </div>
+                    
+                    <div class="form-features">
+                        <h4>🚀 Powered by NASA Data & AI Analysis</h4>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">🛰️</div>
+                                <div class="feature-text">
+                                    <strong>NASA Satellite Data</strong>
+                                    <small>Heat maps & pollution analysis</small>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🤖</div>
+                                <div class="feature-text">
+                                    <strong>AI Impact Prediction</strong>
+                                    <small>Environmental benefit estimation</small>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">📊</div>
+                                <div class="feature-text">
+                                    <strong>Data Visualization</strong>
+                                    <small>Priority mapping for decision-makers</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="primary-button submit-button">
+                            <span class="button-text">Submit Suggestion</span>
+                            <span class="button-loading">🛰️ Analyzing with NASA Data...</span>
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Confirmação de Envio -->
+                <div class="submission-confirmation" id="confirmationMessage" style="display: none;">
+                    <div class="confirmation-icon">🚀</div>
+                    <h3>Suggestion Submitted Successfully!</h3>
+                    <p>Your idea is now being analyzed using <strong>NASA satellite data and AI algorithms</strong> to calculate potential environmental impact.</p>
+                    <div class="confirmation-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Next Step:</span>
+                            <span class="detail-value">Urban Planning Department Review</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Analysis Includes:</span>
+                            <span class="detail-value">NASA heat maps + AI impact prediction</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Expected Response:</span>
+                            <span class="detail-value">Within 30 days</span>
+                        </div>
+                    </div>
+                    <button class="primary-button" onclick="showSection('home')">Submit Another Suggestion</button>
+                </div>
+            </div>
+            
+            <button class="primary-button right-button" onclick="showSection('home')">Restart Journey</button>
+        </div>
+        <div class="image-placeholder">
+            <h3>Your Voice Matters</h3>
+            <p>How citizen suggestions become urban reality</p>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>📝 Citizen Suggestion</h4>
+                        <p>You submit your idea through this platform</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>🛰️ NASA Data Analysis</h4>
+                        <p>Satellite data validates environmental impact</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>🤖 AI Impact Prediction</h4>
+                        <p>Machine learning estimates benefits</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>🏛️ Decision-Maker Review</h4>
+                        <p>City planners receive prioritized suggestions</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>🌆 Urban Implementation</h4>
+                        <p>Your idea becomes city reality</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="success-stats">
+                <h4>📈 Community Impact</h4>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">2,847</div>
+                        <div class="stat-label">Suggestions Submitted</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">184</div>
+                        <div class="stat-label">Projects Implemented</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">73%</div>
+                        <div class="stat-label">NASA Data Match Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUIZ RESPONSE SCREENS (maintained) -->
+    <section id="correct" class="section-journey correct-screen">
+        <div class="content-block">
+            <h2>✅ Correct! Excellent Choice!</h2>
+            <p><strong>Urban Green Corridors</strong> are the most effective solution to reduce urban heat and improve air quality.</p>
+            <p>Trees act as natural filters, removing pollutants and reducing temperature through shading and evapotranspiration.</p>
+            <button class="primary-button" onclick="showSection('solutions')">Explore More Solutions</button>
+        </div>
+    </section>
+
+    <section id="wrongA" class="section-journey wrong-screen">
+        <div class="content-block">
+            <h2>⚠️ Almost there!</h2>
+            <p><strong>Construction of more highways and urban tunnels</strong> seems like a good solution for traffic, but actually increases heat and pollution (NO₂).</p>
+            <p>More road infrastructure encourages more cars, generating more emissions and paved surfaces that retain heat.</p>
+            <button class="primary-button" onclick="showSection('quiz')">Try Again</button>
+        </div>
+    </section>
+
+    <section id="wrongB" class="section-journey wrong-screen">
+        <div class="content-block">
+            <h2>🚫 Oops! That's not the solution</h2>
+            <p><strong>Replacing green areas with new buildings</strong> reduces vegetation and worsens air quality — the opposite of what we want!</p>
+            <p>Green areas are essential to filter pollutants, reduce urban heat and improve quality of life in cities.</p>
+            <button class="primary-button" onclick="showSection('quiz')">Choose Another Option</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>Interactive site for NASA Space Apps Hackathon - Developed with AI assistance</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
